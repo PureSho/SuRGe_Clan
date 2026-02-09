@@ -205,7 +205,7 @@
             border: 1px solid rgba(255,255,255,0.02);
             position: relative;
             z-index: 2;
-            text-align:center:
+            text-align:center;
         }
             
             /* Make separator overlap slightly for a snug fit (optional) */
@@ -269,7 +269,6 @@
         }
         #Contacts .circle img {
             width: 100%;
-            weight: 100%;
             object-fit: cover;         /* Ensures image fills the circle without distortion */
         }
         #Contacts a img{
