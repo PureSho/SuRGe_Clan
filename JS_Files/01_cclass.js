@@ -318,8 +318,8 @@ divisionSelect1.addEventListener("change", () => {
   ========================= */
 
 seasonTypeSelect.value = "squads";
-squadsSeasonSelect.value = "Season17";
-duosSeasonSelect.value = "DuosSeason1";
+squadsSeasonSelect.value = "SquadSZNs";
+duosSeasonSelect.value = "DuosSZNs";
 
 squadsSeasons.style.display = "block";
 duosSeasons.style.display = "none";
