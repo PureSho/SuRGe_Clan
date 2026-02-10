@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Season17: { sheetId: '1taoCxv1YdzljOIttNZgpb36gVB6xSfaLNvWgehD-ZK4', sheetName: 'Standings', divisions: { 
         Construction: { clanCol: 'AM', valueCol: 'AO', startRow: 1, endRow: 11 }, 
         Frontier: { clanCol: 'AF', valueCol: 'AH', startRow: 1, endRow: 25 }, 
-        Defiance: { clanCol: 'Y', valueCol: 'AA', startRow: 1, endRow: 20 }, 
+        Defiance: { clanCol: 'Y', valueCol: 'AA', startRow: 1, endRow: 25 }, 
         Metropolis: { clanCol: 'R', valueCol: 'T', startRow: 1, endRow: 12 }, 
         Tower: { clanCol: 'K', valueCol: 'M', startRow: 1, endRow: 14 }, 
         Kingdom: { clanCol: 'D', valueCol: 'F', startRow: 1, endRow: 13 } } },
