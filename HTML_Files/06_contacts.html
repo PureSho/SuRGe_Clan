@@ -75,6 +75,7 @@
 // Utility: set current year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// NAV BAR
 menuBtn.addEventListener('click', () => {
   const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
   menuBtn.setAttribute('aria-expanded', String(!expanded));
@@ -103,6 +104,29 @@ menuBtn.addEventListener('click', () => {
     mainNav.style.borderRadius = '';
     mainNav.style.zIndex = '';
   }
+});
+// small enhancement: smooth-link navigation offset for header
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',(e)=>{
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target){
+      e.preventDefault();
+      const headerOffset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({top, behavior:'smooth'});
+      // close mobile nav if open
+      if(menuBtn.getAttribute('aria-expanded') === 'true'){ menuBtn.click(); }
+    }
+  });
+});
+const containers = document.querySelectorAll('.media-container');
+containers.forEach(container => {
+  const video = container.querySelector('.hover-video');
+  container.addEventListener('mouseenter', () => video.play());
+  container.addEventListener('mouseleave', () => {
+    video.pause();
+    video.currentTime = 0;
+  });
 });
 
 // IntersectionObserver for reveal animations
@@ -230,21 +254,6 @@ if (mq.matches) {
     bgVideo.play().catch(()=>{ /* ignore */ });
   }
 }
-
-// small enhancement: smooth-link navigation offset for header
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-  anchor.addEventListener('click',(e)=>{
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target){
-      e.preventDefault();
-      const headerOffset = 72;
-      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-      window.scrollTo({top, behavior:'smooth'});
-      // close mobile nav if open
-      if(menuBtn.getAttribute('aria-expanded') === 'true'){ menuBtn.click(); }
-    }
-  });
-});
     </script>
 </main>
 </body>
