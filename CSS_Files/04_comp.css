@@ -1,3 +1,39 @@
+#duosSeasonSelect{
+  width: 230px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 2px solid #e10600;
+  background: #0d0d0d;
+  color: white;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+#duosSeasonSelect{
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.6);
+}
+
+#duosSeasonSelect:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(225, 6, 0, 0.9);
+}
+
+#squadsSeasonSelect {
+  width: 230px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 2px solid #e10600;
+  background: #0d0d0d;
+  color: white;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+#squadsSeasonSelect:hover {
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.6);
+}
+#squadsSeasonSelect:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(225, 6, 0, 0.9);
+}
 /* ================= BASE ================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
