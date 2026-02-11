@@ -331,11 +331,47 @@ fetchSheet()
     });
   }
 
-  /* Close mobile nav if clicking outside (optional friendly behavior) */
-  document.addEventListener('click', (e) => {
-    if (!menuBtn || !mainNav) return;
-    if (menuBtn.getAttribute('aria-expanded') !== 'true') return;
-    if (!mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
-      menuBtn.click();
+// NAV BAR
+menuBtn.addEventListener('click', () => {
+  const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+  menuBtn.setAttribute('aria-expanded', String(!expanded));
+  if (!expanded) {
+    // Open mobile menu: set mobile styles
+    mainNav.style.display = 'flex';
+    mainNav.style.flexDirection = 'column';
+    mainNav.style.gap = '12px';
+    mainNav.style.position = 'absolute';
+    mainNav.style.right = '20px';
+    mainNav.style.top = '66px';
+    mainNav.style.background = 'rgba(6,10,20,0.6)';
+    mainNav.style.padding = '12px';
+    mainNav.style.borderRadius = '10px';
+    mainNav.style.zIndex = '99';
+  } else {
+    // CLOSE: remove ALL inline styles set above
+    mainNav.style.display = '';
+    mainNav.style.flexDirection = '';
+    mainNav.style.gap = '';
+    mainNav.style.position = '';
+    mainNav.style.right = '';
+    mainNav.style.top = '';
+    mainNav.style.background = '';
+    mainNav.style.padding = '';
+    mainNav.style.borderRadius = '';
+    mainNav.style.zIndex = '';
+  }
+});
+// small enhancement: smooth-link navigation offset for header
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',(e)=>{
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target){
+      e.preventDefault();
+      const headerOffset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({top, behavior:'smooth'});
+      // close mobile nav if open
+      if(menuBtn.getAttribute('aria-expanded') === 'true'){ menuBtn.click(); }
     }
   });
+});
