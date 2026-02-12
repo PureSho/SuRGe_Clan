@@ -60,7 +60,7 @@
 
 /* LINKS */
 .nav > a,
-.nav > .dropdown > a {
+.nav > .main-dropdown > a {
   color: white;
   text-decoration: none;
   padding: 8px 12px;
@@ -70,16 +70,16 @@
 
 .nav > a:hover,
 .nav > .dropdown > a:hover {
-  background-color: crimson;
+  background-color: #222;
   border-radius: 6px;
 }
 
 /* DROPDOWN */
-.dropdown {
+.main-dropdown {
   position: relative;
 }
 
-.dropdown-content {
+.main-srg-dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
@@ -93,28 +93,28 @@
   overflow-y: auto;
 }
 
-.dropdown-content li {
+.main-srg-dropdown-content li {
   list-style: none;
 }
 
-.dropdown-content li a {
+.main-srg-dropdown-content li a {
   display: block;
   padding: 10px 14px;
   color: white;
   text-decoration: none;
 }
 
-.dropdown-content li a:hover {
+.main-srg-dropdown-content li a:hover {
   background-color: #2a2a2a;
 }
 
 /* Show dropdown */
-.dropdown.show .dropdown-content {
+.main-dropdown.show .main-srg-dropdown-content {
   display: block;
 }
 
 /* Arrow */
-.dropdown-toggle::after {
+.main-srg-dropdown-toggle::after {
   content: "";
   display: inline-block;
   margin-left: 6px;
@@ -131,18 +131,27 @@
         </button>
         <a class="logo"><img style="width:24px; height:24px" src="https://i.postimg.cc/L5f9MVSf/fully-transparent.png">  SuRGe - Homepage</a>
       </div>
-      <nav id="mainNav" class="nav">
-        <a class="dropbtn dropdown-toggle">About SRG</a>
-        <ul class="dropdown-content">
-          <li><a href="HTML_Files/02_info.html">More Info</a></li>
-          <li><a href="HTML_Files/03_roster.html">Clan Roster</a></li>
-          <li><a href="HTML_Files/04_comp.html">Competitive</a></li>
-        </ul>
-        <a class="dropbtn dropdown-toggle">Join SuRGe</a>
-        <ul class="dropdown-content">
-          <li><a href="HTML_Files/05_tryouts.html">Tryouts</a></li>
-          <li><a href="HTML_Files/06_contacts.html">Socials</a></li>
-        </ul>
+  <nav id="mainNav" class="nav">
+
+    <!-- About SRG -->
+    <div class="main-dropdown">
+      <a class="main-srg-dropdown-toggle">About SRG</a>
+      <ul class="main-srg-dropdown-content">
+        <li><a href="HTML_Files/02_info.html">More Info</a></li>
+        <li><a href="HTML_Files/03_roster.html">Clan Roster</a></li>
+        <li><a href="HTML_Files/04_comp.html">Competitive</a></li>
+      </ul>
+    </div>
+
+    <!-- Join SuRGe -->
+    <div class="main-dropdown">
+      <a class="main-srg-dropdown-toggle">Join SuRGe</a>
+      <ul class="main-srg-dropdown-content">
+        <li><a href="HTML_Files/05_tryouts.html">Tryouts</a></li>
+        <li><a href="HTML_Files/06_contacts.html">Socials</a></li>
+      </ul>
+    </div>
+
   </nav>
 </header>
 <main>
@@ -451,10 +460,10 @@ if (mq.matches) {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const dropdowns = document.querySelectorAll(".dropdown");
+  const dropdowns = document.querySelectorAll(".main-dropdown");
 
   dropdowns.forEach(dropdown => {
-    const toggle = dropdown.querySelector(".dropdown-toggle");
+    const toggle = dropdown.querySelector(".main-srg-dropdown-toggle");
 
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
