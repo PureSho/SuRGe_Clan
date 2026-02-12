@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,6 +35,84 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <style>
+/* NAVBAR BASE */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+}
+
+.nav-links li a:hover {
+  background-color: #444;
+  border-radius: 4px;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  min-width: 160px;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1000;
+
+  /* Scroll support */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-content li a {
+  padding: 10px;
+  color: white;
+}
+
+.dropdown-content li a:hover {
+  background-color: #555;
+}
+
+/* SHOW DROPDOWN */
+.dropdown.show .dropdown-content {
+  display: block;
+}
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+</style>
   <div class="page">
     <header class="site-header">
       <div class="brand">
@@ -42,14 +122,21 @@
         <a class="logo"><img style="width:24px; height:24px" src="https://i.postimg.cc/L5f9MVSf/fully-transparent.png">  SuRGe - Homepage</a>
       </div>
       <nav id="mainNav" class="nav">
-        <a href="HTML_Files/02_info.html">More Info</a>
-        <a href="HTML_Files/03_roster.html">Clan Roster</a>
-        <a href="HTML_Files/04_comp.html">Competitive</a>
-        <a href="HTML_Files/05_tryouts.html">Tryouts</a>
-        <a href="HTML_Files/06_contacts.html">Contacts</a>
-
-      </nav>
-    </header>
+    <li class="dropdown">
+        <a class="dropbtn dropdown-toggle">About SRG</a>
+        <ul class="dropdown-content">
+          <li><a href="HTML_Files/02_info.html">More Info</a></li>
+          <li><a href="HTML_Files/03_roster.html">Clan Roster</a></li>
+          <li><a href="HTML_Files/04_comp.html">Competitive</a></li>
+        </ul>
+        <a class="dropbtn dropdown-toggle">Join SuRGe</a>
+        <ul class="dropdown-content">
+          <li><a href="HTML_Files/05_tryouts.html">Tryouts</a></li>
+          <li><a href="HTML_Files/06_contacts.html">Socials</a></li>
+        </ul>
+    </li>
+  </nav>
+</header>
 <main>
     <section id="home" class="hero">
         <!-- Background video (muted, looped) -->
@@ -353,6 +440,24 @@ if (mq.matches) {
   }
 }
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.querySelector(".dropdown");
+  const button = document.querySelector(".dropbtn");
+
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    dropdown.classList.toggle("show");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("show");
+    }
+  });
+});
+</script>
 </main>
 </body>
 </html>
