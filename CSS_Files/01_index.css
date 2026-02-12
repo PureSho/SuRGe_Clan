@@ -157,113 +157,38 @@
             transform:translateY(-6px) rotate(-45deg);
         }
 
-/* ========================= */
-/* NAVBAR SYSTEM */
-/* ========================= */
+        .nav{
+            display:flex;
+            gap:18px;
+        }
 
-header {
-  background: #0b0f12;
-  padding: 15px 40px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+        .nav a{
+            color:var(--muted);
+            text-decoration:none;
+            padding:8px;
+            border-radius:8px;
+            transition:color var(--transition);
+            font-weight:500;
+        }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 25px;
-  align-items: center;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #ff2d2d;
-}
-
-/* Dropdown */
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #11161c;
-  min-width: 180px;
-  display: none;
-  flex-direction: column;
-  border-radius: 6px;
-  padding: 10px 0;
-}
-
-.dropdown-menu a {
-  padding: 10px 15px;
-  font-size: 14px;
-}
-
-.dropdown-menu a:hover {
-  background: #1c232b;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: flex;
-}
-
-/* Mobile */
-
-.menu-toggle {
-  display: none;
-  font-size: 26px;
-  color: white;
-  cursor: pointer;
-}
-
-@media (max-width: 800px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: #0b0f12;
-    width: 220px;
-    flex-direction: column;
-    padding: 20px;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
+        .nav a:hover{
+            color:white;
+        }
 
 /* Mobile nav toggle (expects hamburger immediately before .nav in the DOM) */
         @media (max-width: 800px) {
+            .nav {
+                display: none;
+                flex-direction: column;
+                background: rgba(10,14,22,0.95);
+                position: absolute;
+                top: 60px; /* below header */
+                right: 0;
+                width: 100%;
+                padding: 12px;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                backdrop-filter: blur(6px);
+            }
             .hamburger[aria-expanded="true"] + .nav {
                 display: flex;
             }
