@@ -698,24 +698,19 @@
     position: absolute;
     top: 120%;
     left: 0;
-
     background: rgba(20, 5, 5, 0.95);
     backdrop-filter: blur(8px);
-
     border-radius: 10px;
     padding: 6px 0;
-    min-width: 180px;
-
+    min-width: 100%;
     border: 1px solid rgba(255,255,255,0.05);
     box-shadow:
         0 10px 30px rgba(0,0,0,0.5),
         0 0 20px rgba(220,38,38,0.15);
-
     /* Animation Start State */
     opacity: 0;
     transform: translateY(-10px) scale(0.98);
     pointer-events: none;
-
     transition:
         opacity 250ms ease,
         transform 250ms ease;
