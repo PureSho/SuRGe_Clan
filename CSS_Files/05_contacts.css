@@ -283,7 +283,12 @@
                 color:var(--muted);
                 font-size:0.9rem;
         }
-            
+                @media (max-width: 600px) {
+          .player-card-inner { flex-direction: column; align-items: flex-start; }
+          .player-avatar { width: 100%; height: 160px; }
+          .srg-logo { width: 180px; }
+          .nav { display: none; }
+        }
             /* small visual helpers to make it feel alive */
         :root{
                 --glow: drop-shadow(0 8px 20px rgba(99,102,241,0.12));
