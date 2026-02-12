@@ -369,27 +369,22 @@ if (mq.matches) {
     </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-  const dropdowns = document.querySelectorAll(".main-dropdown");
+  const dropdowns = document.querySelectorAll(".dropdown");
 
   dropdowns.forEach(dropdown => {
-    const toggle = dropdown.querySelector(".main-srg-dropdown-toggle");
+    const toggle = dropdown.querySelector(".dropdown-toggle");
 
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Close other dropdowns
       dropdowns.forEach(d => {
-        if (d !== dropdown) {
-          d.classList.remove("show");
-        }
+        if (d !== dropdown) d.classList.remove("show");
       });
 
       dropdown.classList.toggle("show");
     });
   });
 
-  // Close when clicking outside
   document.addEventListener("click", (e) => {
     dropdowns.forEach(dropdown => {
       if (!dropdown.contains(e.target)) {
@@ -397,8 +392,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
 });
+
 </script>
 </main>
 </body>
