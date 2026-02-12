@@ -35,11 +35,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <style>
+<style>
 /* NAVBAR BASE */
 .navbar {
-  background-color: #333;
-  padding: 10px 20px;
+  background-color: #111;
+  padding: 12px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,22 +52,26 @@
   font-weight: bold;
 }
 
-.nav-links {
-  list-style: none;
+.nav {
   display: flex;
-  gap: 25px;
+  gap: 30px;
+  align-items: center;
 }
 
-.nav-links li a {
+/* LINKS */
+.nav > a,
+.nav > .dropdown > a {
   color: white;
   text-decoration: none;
   padding: 8px 12px;
-  display: block;
+  cursor: pointer;
+  position: relative;
 }
 
-.nav-links li a:hover {
-  background-color: #444;
-  border-radius: 4px;
+.nav > a:hover,
+.nav > .dropdown > a:hover {
+  background-color: crimson;
+  border-radius: 6px;
 }
 
 /* DROPDOWN */
@@ -78,39 +82,45 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #444;
-  min-width: 160px;
-  border-radius: 4px;
-  overflow: hidden;
+  top: 100%;
+  left: 0;
+  background-color: #1a1a1a;
+  min-width: 200px;
+  border-radius: 6px;
   z-index: 1000;
 
-  /* Scroll support */
-  max-height: 200px;
+  max-height: 240px; /* Scroll limit */
   overflow-y: auto;
 }
 
+.dropdown-content li {
+  list-style: none;
+}
+
 .dropdown-content li a {
-  padding: 10px;
+  display: block;
+  padding: 10px 14px;
   color: white;
+  text-decoration: none;
 }
 
 .dropdown-content li a:hover {
-  background-color: #555;
+  background-color: #2a2a2a;
 }
 
-/* SHOW DROPDOWN */
+/* Show dropdown */
 .dropdown.show .dropdown-content {
   display: block;
 }
+
+/* Arrow */
 .dropdown-toggle::after {
-    display: inline-block;
-    margin-left: .255em;
-    vertical-align: .255em;
-    content: "";
-    border-top: .3em solid;
-    border-right: .3em solid transparent;
-    border-bottom: 0;
-    border-left: .3em solid transparent;
+  content: "";
+  display: inline-block;
+  margin-left: 6px;
+  border-top: 5px solid white;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
 </style>
   <div class="page">
@@ -122,7 +132,6 @@
         <a class="logo"><img style="width:24px; height:24px" src="https://i.postimg.cc/L5f9MVSf/fully-transparent.png">  SuRGe - Homepage</a>
       </div>
       <nav id="mainNav" class="nav">
-    <li class="dropdown">
         <a class="dropbtn dropdown-toggle">About SRG</a>
         <ul class="dropdown-content">
           <li><a href="HTML_Files/02_info.html">More Info</a></li>
@@ -134,7 +143,6 @@
           <li><a href="HTML_Files/05_tryouts.html">Tryouts</a></li>
           <li><a href="HTML_Files/06_contacts.html">Socials</a></li>
         </ul>
-    </li>
   </nav>
 </header>
 <main>
@@ -442,20 +450,35 @@ if (mq.matches) {
     </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const dropdown = document.querySelector(".dropdown");
-  const button = document.querySelector(".dropbtn");
 
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
-    dropdown.classList.toggle("show");
+  const dropdowns = document.querySelectorAll(".dropdown");
+
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector(".dropdown-toggle");
+
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Close other dropdowns
+      dropdowns.forEach(d => {
+        if (d !== dropdown) {
+          d.classList.remove("show");
+        }
+      });
+
+      dropdown.classList.toggle("show");
+    });
   });
 
-  // Close dropdown when clicking outside
+  // Close when clicking outside
   document.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove("show");
-    }
+    dropdowns.forEach(dropdown => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+      }
+    });
   });
+
 });
 </script>
 </main>
