@@ -35,93 +35,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<style>
-/* NAVBAR BASE */
-.navbar {
-  background-color: #111;
-  padding: 12px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: Arial, sans-serif;
-}
-
-.logo {
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.nav {
-  gap: 30px;
-  align-items: center;
-}
-
-/* LINKS */
-.nav > a,
-.nav > .main-dropdown > a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  position: relative;
-}
-
-.nav > a:hover,
-.nav > .dropdown > a:hover {
-  background-color: #222;
-  border-radius: 6px;
-}
-
-/* DROPDOWN */
-.main-dropdown {
-  position: relative;
-}
-
-.main-srg-dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #1a1a1a;
-  border-radius: 6px;
-  z-index: 1000;
-  padding-left:5px;
-  padding-right:5px;
-  max-height: 240px; /* Scroll limit */
-  overflow-y: auto;
-}
-
-.main-srg-dropdown-content li {
-  list-style: none;
-}
-
-.main-srg-dropdown-content li a {
-  display: block;
-  padding: 10px 14px;
-  color: white;
-  text-decoration: none;
-}
-
-.main-srg-dropdown-content li a:hover {
-  background-color: #2a2a2a;
-}
-
-/* Show dropdown */
-.main-dropdown.show .main-srg-dropdown-content {
-  display: block;
-}
-
-/* Arrow */
-.main-srg-dropdown-toggle::after {
-  content: "";
-  display: inline-block;
-  margin-left: 6px;
-  border-top: 5px solid white;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-}
-</style>
   <div class="page">
     <header class="site-header">
       <div class="brand">
@@ -130,28 +43,20 @@
         </button>
         <a class="logo"><img style="width:24px; height:24px" src="https://i.postimg.cc/L5f9MVSf/fully-transparent.png">  SuRGe - Homepage</a>
       </div>
-<nav id="mainNav" class="nav" style="display: flex;flex-direction: row;gap: 12px;position: absolute;top: 72.8px;background: rgba(6, 10, 20, 0.6);padding: 12px;z-index: 99;">
+<nav id="mainNav" class="nav">
+  <div class="dropdown">
+    <a class="dropbtn dropdown-toggle">About SRG</a>
+        <ul class="dropdown-content" href="HTML_Files/02_info.html">More Info</ul>
+        <ul class="dropdown-content" href="HTML_Files/03_roster.html">Clan Roster</ul>
+        <ul class="dropdown-content" href="HTML_Files/04_comp.html">Competitive</ul>
+  </div>
 
-    <!-- About SRG -->
-    <div class="main-dropdown">
-      <a class="main-srg-dropdown-toggle">About SRG</a>
-      <ul class="main-srg-dropdown-content">
-        <li><a href="HTML_Files/02_info.html">More Info</a></li>
-        <li><a href="HTML_Files/03_roster.html">Clan Roster</a></li>
-        <li><a href="HTML_Files/04_comp.html">Competitive</a></li>
-      </ul>
-    </div>
-
-    <!-- Join SuRGe -->
-    <div class="main-dropdown">
-      <a class="main-srg-dropdown-toggle">Join SuRGe</a>
-      <ul class="main-srg-dropdown-content">
-        <li><a href="HTML_Files/05_tryouts.html">Tryouts</a></li>
-        <li><a href="HTML_Files/06_contacts.html">Socials</a></li>
-      </ul>
-    </div>
-
-  </nav>
+  <div class="dropdown">
+    <a class="dropbtn dropdown-toggle">Join SuRGe</a>
+      <ul class="dropdown-content" href="HTML_Files/05_tryouts.html">Tryouts</ul>
+      <ul class="dropdown-content" href="HTML_Files/06_contacts.html">Socials</ul>
+  </div>
+</nav>
 </header>
 <main>
     <section id="home" class="hero">
