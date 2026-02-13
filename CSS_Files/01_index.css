@@ -88,8 +88,7 @@
         .page{
             min-height:100vh;
             display:flex;
-            flex-direction:column;
-        }
+       }
 
         .site-header{
             position:sticky;
@@ -178,7 +177,6 @@
 /* Mobile nav toggle (expects hamburger immediately before .nav in the DOM) */
         @media (max-width: 800px) {
             .nav {
-                display: none;
                 background: rgba(10,14,22,0.95);
                 position: absolute;
                 top: 60px; /* below header */
