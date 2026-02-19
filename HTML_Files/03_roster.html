@@ -109,6 +109,56 @@
 
   <script src="../JS_Files/03_roster.js" defer></script>
 <script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+
+      tabButtons.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+  /* ---------- Mobile menu toggle (no persistent inline styling leak) ---------- */
+  if (menuBtn && mainNav) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      if (!isOpen) {
+        // Apply only necessary inline styles for the mobile menu to appear (temporary)
+        mainNav.dataset._wasHidden = getComputedStyle(mainNav).display === 'none' ? 'true' : '';
+        mainNav.style.display = 'flex';
+        mainNav.style.flexDirection = 'column';
+        mainNav.style.gap = '12px';
+        mainNav.style.position = 'absolute';
+        mainNav.style.right = '16px';
+        mainNav.style.top = '66px';
+        mainNav.style.background = 'rgba(6,10,20,0.7)';
+        mainNav.style.padding = '12px';
+        mainNav.style.borderRadius = '10px';
+        mainNav.style.zIndex = '9999';
+      } else {
+        // Revert inline styles
+        ['display','flexDirection','gap','position','right','top','background','padding','borderRadius','zIndex'].forEach(k => mainNav.style[k] = '');
+        if (mainNav.dataset._wasHidden) { mainNav.style.display = ''; delete mainNav.dataset._wasHidden; }
+      }
+    });
+  }
+
+  /* Close mobile nav if clicking outside (optional friendly behavior) */
+  document.addEventListener('click', (e) => {
+    if (!menuBtn || !mainNav) return;
+    if (menuBtn.getAttribute('aria-expanded') !== 'true') return;
+    if (!mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
+      menuBtn.click();
+    }
+  });
+</script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const dropdowns = document.querySelectorAll(".dropdown");
 
