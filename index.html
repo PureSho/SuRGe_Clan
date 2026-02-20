@@ -35,15 +35,14 @@
   <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-      <header class="site-header">
-      <div class="brand">
-        <button id="menuBtn" aria-label="Toggle menu" class="hamburger" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+<header class="site-header">
+  <div class="brand">
+    <button id="menuBtn" aria-label="Toggle menu" class="hamburger" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
         <a class="logo"><img style="width:24px; height:24px" src="https://i.postimg.cc/L5f9MVSf/fully-transparent.png">  SuRGe - Homepage</a>
       </div>
-<nav id="mainNav" class="navbar">
-    <!-- About SRG -->
+  <nav id="mainNav" class="nav">
     <div class="dropdown">
       <a class="dropdown-toggle">About SRG</a>
       <ul class="dropdown-content">
@@ -153,54 +152,59 @@
   <script src="JS_Files/05_navbar.js" defer></script>
 
 <script>
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
+const menuBtn = document.getElementById("menuBtn");
+const mainNav = document.getElementById("mainNav");
 
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
+if (menuBtn && mainNav) {
+  menuBtn.addEventListener("click", () => {
+    const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+    menuBtn.setAttribute("aria-expanded", String(!isOpen));
 
-      tabButtons.forEach(b => b.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
-
-      btn.classList.add('active');
-      document.getElementById(target).classList.add('active');
-    });
-  });
-  /* ---------- Mobile menu toggle (no persistent inline styling leak) ---------- */
-  if (menuBtn && mainNav) {
-    menuBtn.addEventListener('click', () => {
-      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!isOpen));
-      if (!isOpen) {
-        // Apply only necessary inline styles for the mobile menu to appear (temporary)
-        mainNav.dataset._wasHidden = getComputedStyle(mainNav).display === 'none' ? 'true' : '';
-        mainNav.style.display = 'flex';
-        mainNav.style.flexDirection = 'column';
-        mainNav.style.gap = '12px';
-        mainNav.style.position = 'absolute';
-        mainNav.style.right = '16px';
-        mainNav.style.top = '66px';
-        mainNav.style.background = 'rgba(6,10,20,0.7)';
-        mainNav.style.padding = '12px';
-        mainNav.style.borderRadius = '10px';
-        mainNav.style.zIndex = '9999';
-      } else {
-        // Revert inline styles
-        ['display','flexDirection','gap','position','right','top','background','padding','borderRadius','zIndex'].forEach(k => mainNav.style[k] = '');
-        if (mainNav.dataset._wasHidden) { mainNav.style.display = ''; delete mainNav.dataset._wasHidden; }
-      }
-    });
-  }
-
-  /* Close mobile nav if clicking outside (optional friendly behavior) */
-  document.addEventListener('click', (e) => {
-    if (!menuBtn || !mainNav) return;
-    if (menuBtn.getAttribute('aria-expanded') !== 'true') return;
-    if (!mainNav.contains(e.target) && !menuBtn.contains(e.target)) {
-      menuBtn.click();
+    if (!isOpen) {
+      mainNav.style.display = "flex";
+      mainNav.style.flexDirection = "column";
+      mainNav.style.gap = "12px";
+      mainNav.style.position = "absolute";
+      mainNav.style.right = "16px";
+      mainNav.style.top = "66px";
+      mainNav.style.background = "rgba(6,10,20,0.7)";
+      mainNav.style.padding = "12px";
+      mainNav.style.borderRadius = "10px";
+      mainNav.style.zIndex = "9999";
+    } else {
+      [
+        "display","flexDirection","gap","position",
+        "right","top","background","padding",
+        "borderRadius","zIndex"
+      ].forEach(k => mainNav.style[k] = "");
     }
   });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdowns = document.querySelectorAll(".dropdown");
+
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector(".dropdown-toggle");
+
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      dropdowns.forEach(d => {
+        if (d !== dropdown) d.classList.remove("show");
+      });
+
+      dropdown.classList.toggle("show");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    dropdowns.forEach(dropdown => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+      }
+    });
+  });
+});
 </script>
     <script>
 // Utility: set current year
@@ -368,34 +372,6 @@ if (mq.matches) {
     bgVideo.play().catch(()=>{ /* ignore */ });
   }
 }
-    </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const dropdowns = document.querySelectorAll(".dropdown");
-
-  dropdowns.forEach(dropdown => {
-    const toggle = dropdown.querySelector(".dropdown-toggle");
-
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      dropdowns.forEach(d => {
-        if (d !== dropdown) d.classList.remove("show");
-      });
-
-      dropdown.classList.toggle("show");
-    });
-  });
-
-  document.addEventListener("click", (e) => {
-    dropdowns.forEach(dropdown => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove("show");
-      }
-    });
-  });
-});
-
 </script>
 </main>
 </body>
