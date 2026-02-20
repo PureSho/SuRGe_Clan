@@ -87,7 +87,6 @@
 /* Layout */
         .page{
             min-height:100vh;
-            display:flex;
        }
 
         .site-header{
