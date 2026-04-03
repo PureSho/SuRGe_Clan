@@ -13,13 +13,13 @@ const SEASONS = {
   },
   AverageDPG: {
     sheet: 'Leaderboards',
-    startRow: 11,
-    endRow: 19,
+    startRow: 10,
+    endRow: 18,
     headers: ['Clan Name', 'Average DPG']
   },
   AverageKPG: {
     sheet: 'Leaderboards',
-    startRow: 21,
+    startRow: 20,
     endRow: 28,
     headers: ['Clan Name', 'Average KPG']
   }
